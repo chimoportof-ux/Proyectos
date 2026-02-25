@@ -1,8 +1,14 @@
+version: '3.8'
+
 services:
   web:
     build: .
     command: gunicorn blogDataModel.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - .:/code
     ports:
       - "8000:8000"
+    environment:
+      SECRET_KEY: 'tu_secret_key'
+      DEBUG: 'True'
+      ALLOWED_HOSTS: "localhost,127.0.0.1,localhost:8000"
+    volumes:
+      - .:/code

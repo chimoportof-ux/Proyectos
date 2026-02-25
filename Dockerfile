@@ -1,17 +1,17 @@
+# Usa Python 3.11
 FROM python:3.11
 
 WORKDIR /code
 
-# Copia y instala requisitos
+# Copia y instala dependencias
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install gunicorn whitenoise
 
-# Copia el resto del proyecto
+# Copia todo el proyecto
 COPY . /code/
 
-# Ejecuta collectstatic
-RUN python manage.py collectstatic --noinput
+EXPOSE 8000
 
-# CMD usando python -m gunicorn (evita problemas de PATH)
-CMD ["python", "-m", "gunicorn", "blogDataModel.wsgi:application", "--bind", "0.0.0.0:8000"]
+# CMD: primero collectstatic, luego gunicorn
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn blogDataModel.wsgi:application --bind 0.0.0.0:8000"]

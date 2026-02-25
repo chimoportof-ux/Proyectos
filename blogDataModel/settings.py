@@ -27,7 +27,14 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 
 DEBUG = os.environ.get("DEBUG") == "True"
 
-ALLOWED_HOSTS = [".onrender.com"]  # acepta cualquier subdominio Render
+# Permitir múltiples hosts, tanto localhost como Render
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+
+# Si quieres agregar automáticamente el host de Render cuando no está en variables:
+# Por ejemplo, si RENDER_EXTERNAL_URL está definido en tu dashboard de Render
+render_url = os.environ.get("RENDER_EXTERNAL_URL")
+if render_url:
+    ALLOWED_HOSTS.append(render_url)
 
 
 # Application definition
