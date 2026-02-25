@@ -244,6 +244,13 @@ audio {
       0 0 24px #ff6600;
   }
 
+  #titulo_magico + img {
+    max-width: 90%; /* nunca más ancho que el 90% de la pantalla */
+    height: auto;   /* mantiene proporción */
+    display: block;
+    margin: 10px auto; /* centrada horizontalmente */
+  }
+
   /* Subtítulos centrados */
   h2 {
     font-size: 18px;
