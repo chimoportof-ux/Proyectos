@@ -1,21 +1,17 @@
+# Dockerfile para Django + WhiteNoise en Render (opción 2)
+
 # Usa una imagen base oficial de Python
 FROM python:3.11
 
-# Establece el directorio de trabajo dentro del contenedor
+# Directorio de trabajo dentro del contenedor
 WORKDIR /code
 
-# Copia los requisitos e instala todo junto
+# Copia el archivo de requisitos e instala dependencias
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia todo el código al contenedor
+# Copia todo el código del proyecto
 COPY . /code/
 
-# Recopila los archivos estáticos para producción
-RUN python manage.py collectstatic --noinput
-
-# Expone el puerto para Render (opcional)
-# EXPOSE 8000
-
-# Comando por defecto para iniciar Gunicorn
-CMD ["sh", "-c", "gunicorn blogDataModel.wsgi:application --bind 0.0.0.0:$PORT"]
+# Comando por defecto: recopila estáticos y luego inicia Gunicorn
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn blogDataModel.wsgi:application --bind 0.0.0.0:$PORT"]
