@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-image: url('/static/blogData/fondo.jfif');
+}
+a{
+    text-decoration: none;
+    color: #333;
+    border: 3px solid #c7b8ff;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f5f0ff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+a:hover{
+    background-color: #c7b8ff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+#titulo_magico {
+  font-family: 'Cinzel', 'Garamond', serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: #f3e500;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 5px #f3e500,
+    0 0 10px #f3e500,
+    0 0 20px #ffcc00,
+    0 0 30px #ff9900,
+    0 0 40px #ff6600; 
+}
+#comment {
+  border: 4px solid #c7b8ff;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 20px auto;
+  max-width: 400px;
+  background-color: #f5f0ff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  color: #333;
+}
+h3{
+  text-align: center;
+  color: #f3e500;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  width: 400px;
+  height: 50px;
+  margin: 40px auto;
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.6),
+    0 0 40px rgba(138, 43, 226, 0.3);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}

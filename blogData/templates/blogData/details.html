@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'blogData/detail.css'%}" />
+  </head>
+  <body>
+    <h1 id="titulo_magico">DETAILS</h1>
+    <div class="post_contenedor">
+      <h3>TITULO: {{ posts.title }}</h3>
+      {% if posts.image %}
+      <img src="{{ posts.image.url }}" alt="Imagen del post: {{ posts.title }}" class="img" />
+      {% endif %}
+      <p>Actualizado por ultima vez el: {{ posts.date|date:"d \o\f M Y" }}</p>
+      <p>EXCERPT: {{ posts.excerpt }}</p>
+      <h3>CONTENT</h3>
+      <p>{{ posts.content }}</p>
+      <h3>AUTHOR:</h3>
+      <p>{{ posts.author.first_name }} {{ posts.author.last_name }}</p>
+      <a href="mailto:{{ posts.author.email_address }}">
+        {{ posts.author.email_address }}
+      </a>
+      <h3>TAGS:</h3>
+      {% for tags in posts.tags.all %}
+      <p>{{ tags.caption }}</p>
+      {% endfor %}
+      <h3>COMENTARIOS:</h3>
+      {% if comments %}
+        <a href="{% url 'comments' id=posts.id %}">Ver comentarios ({{ comments|length }}) </a>
+      {% else %}
+        <p>No hay comentarios todavía</p>
+      {% endif %}
+    </div>
+    <div class="post_contenedor">
+      <h2>Deja un comentario</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar comentario</button>
+      </form>
+    </div>
+    <br />
+    <a id="home" href="{% url 'index' %}">Volver a Menu Principal</a>
+    <a id="home" href="{% url 'allPosts' %}">Volver a All Posts</a>
+    <br>
+    <br>
+  </body>
+</html>

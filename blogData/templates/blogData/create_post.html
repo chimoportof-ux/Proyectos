@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Post</title>
+    <link rel="stylesheet" href="{% static 'blogData/create_posts.css' %}">
+</head>
+<body>
+    <h1 id="titulo_magico">New Post</h1>
+
+    <form action="{% url 'create_post' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div id="menu_create_post">
+            <div id="menu_author">
+                <h2>Autor</h2>
+                {{ author_form.as_p }}
+            </div>
+
+            <div id="menu_post">
+                <h2>Post</h2>
+                {{ post_form.as_p }}
+            </div>
+
+        </div>
+    <br>
+    <br>
+    <br>
+        <button type="submit">Guardar</button>
+    </form>
+    <br>
+    <br>
+    <a id="home" href="{% url 'index' %}">Volver al menú principal</a>
+    <br>
+    <br>
+</body>
+</html>

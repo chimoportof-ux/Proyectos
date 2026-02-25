@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'blogData/for-tag.css'%}" />
+  </head>
+  <body>
+      <h1 id="titulo_magico">TAGS:</h1>
+      <br>
+
+    {% for tag in tags %}
+    <details>
+      <summary>{{ tag.caption }}</summary>
+
+      {% for post in tag.post_set.all %}
+      <ul>
+        <li>
+          <div class="post_card">
+            <p>{{ post.title }}</p>
+            <p>{{ post.date|date:"d \o\f M Y" }}</p>
+            <a href="{% url 'post_details' post.id %}">{{ post.title }}</a>
+            <br /><br />
+          </div>
+        </li>
+      </ul>
+      {% endfor %}
+    </details>
+    <br>
+    {% endfor %}
+    <br><br>
+    <a id="home" href="{% url 'index' %}">Volver a Menu Principal</a>
+  </body>
+</html>

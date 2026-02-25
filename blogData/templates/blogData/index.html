@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blogData/index.css'%}" />
+  </head>
+  <body>
+    <h1 id="titulo_magico">BLOG OF</h1>
+    <br />
+    <img src="{% static "blogData/harry-potter.png"%}" />
+    <div id="separacion">
+      <a id="createPost" href="{% url 'create_post' %}">Create New Post</a>
+      <h2 id="lastPosts">Last Posts:</h2>
+    </div>
+    {% for posts in posts %}
+    <div class="post_card">
+      <p>{{ posts.title }}</p>
+      <p>{{ posts.date|date:"d \o\f M Y" }}</p>
+      <a href="{% url 'post_details' posts.id %}">{{ posts }}</a>
+      <br /><br />
+    </div>
+    {% endfor %}
+    <br />
+    <a id="allPosts" href="{% url 'allPosts' %}">All Posts</a>
+    <a id="forTags" href="{% url 'forTags' %}">Search for tags</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="mapa_contenedor">
+      <img id="mapa_magico" src="{% static "blogData/hogwarts.avif"%}" />
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="audio-player">
+      <h4 id="experiencia">TOCA LA VARITA PARA HACER MAGIA</h4>
+      <audio id="miAudio">
+          <source src="{% static "blogData/Prologue.mp3"%}" type="audio/mpeg">
+          Tu navegador no soporta audio.
+      </audio>
+
+      <button id="toggleBtn">🪄</button>
+    </div>
+    <img class="esquina sup-der" src="{% static "blogData/slytherin.png"%}" />
+    <img class="esquina sup-izq" src="{% static "blogData/gryfindor.png"%}" />
+    <img class="esquina inf-der" src="{% static "blogData/hufelpuf.png"%}" />
+    <img class="esquina inf-izq" src="{% static "blogData/ravenclaw.png"%}" />
+    <br>
+    <br>
+    <script>
+      const audio = document.getElementById("miAudio");
+      const toggleBtn = document.getElementById("toggleBtn");
+      const experiencia = document.getElementById("experiencia");
+      const mapa = document.getElementById("mapa_magico")
+
+      toggleBtn.onclick = () => {
+        if (audio.paused) {
+            audio.play();
+            toggleBtn.textContent = "🧹";
+            experiencia.innerText="HECHIZO ACTIVADO"
+        } else {
+            audio.pause();
+            toggleBtn.textContent = "🪄";
+            experiencia.innerText="TOCA LA VARITA PARA HACER MAGIA"
+        }
+      };
+
+      mapa.addEventListener('click', () => {
+      mapa.classList.toggle('activo');
+      });
+  </script>
+  </body>
+</html>

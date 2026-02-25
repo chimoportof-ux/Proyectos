@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'blogData/post_comments.css'%}" />
+</head>
+<body>
+    <h1 id="titulo_magico">COMENTARIOS</h1>
+    <h3>{{ post.title }}</h3>
+    {% for comment in comments %}
+        <div id="comment">
+          <strong>{{ comment.name }}</strong>
+          <p>{{ comment.date|date:"d \o\f M Y" }}</p>
+          <p>{{ comment.text }}</p>
+        </div>
+        <br>
+        <br>
+    {% endfor %}
+    <br>
+    <a href="{% url 'post_details' id=post.id %}">Volver al post</a>
+    <br>
+    <br>
+</body>
+</html>
