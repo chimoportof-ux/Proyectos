@@ -10,6 +10,10 @@ COPY requirements.txt .
 # Instala las dependencias del proyecto
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install gunicorn whitenoise
+
+CMD ["sh", "-c", "gunicorn blogDataModel.wsgi:application --bind 0.0.0.0:$PORT"]
+
 # Copia el código del proyecto al directorio de trabajo en el contenedor
 COPY . /code/
 
