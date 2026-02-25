@@ -4,24 +4,18 @@ FROM python:3.11
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /code
 
-# Copia el archivo de requisitos al contenedor
+# Copia los requisitos e instala todo junto
 COPY requirements.txt .
-
-# Instala las dependencias del proyecto
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install gunicorn whitenoise
-
-CMD ["sh", "-c", "gunicorn blogDataModel.wsgi:application --bind 0.0.0.0:$PORT"]
-
-# Copia el código del proyecto al directorio de trabajo en el contenedor
+# Copia todo el código al contenedor
 COPY . /code/
 
-# Ejecuta el comando para crear un nuevo proyecto Django
-# RUN django-admin startproject password_generator .
+# Recopila los archivos estáticos para producción
+RUN python manage.py collectstatic --noinput
 
-# Expone el puerto que Django usa por defecto
+# Expone el puerto para Render (opcional)
 # EXPOSE 8000
 
-# Comando por defecto para ejecutar cuando se inicie el contenedor
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Comando por defecto para iniciar Gunicorn
+CMD ["sh", "-c", "gunicorn blogDataModel.wsgi:application --bind 0.0.0.0:$PORT"]
