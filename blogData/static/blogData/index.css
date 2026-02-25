@@ -223,14 +223,19 @@ audio {
   right: 0;
 }
 
-/* =========================
-   Media Queries para móvil
-   ========================= */
+/* ===== MÓVIL - hasta 767px ===== */
 @media (max-width: 767px) {
 
-  /* Ajuste del título principal */
+  /* Evitar scroll horizontal */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Título principal centrado */
   #titulo_magico {
     font-size: 32px;
+    text-align: center;
+    margin: 20px auto;
     text-shadow: 
       0 0 3px #f3e500,
       0 0 6px #f3e500,
@@ -239,45 +244,55 @@ audio {
       0 0 24px #ff6600;
   }
 
-  /* Ajuste de subtítulos */
+  /* Subtítulos centrados */
   h2 {
     font-size: 18px;
+    text-align: center;
+    margin: 10px auto;
   }
 
-  /* Post cards */
-  .post_card {
-    margin: 15px 10px;
-    padding: 12px;
-    max-width: 90%;
-  }
-
-  /* Separación y botón crear post */
+  /* Separación de botones y crear post */
   #separacion {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
+    margin: 10px auto;
   }
 
   #createPost {
-    position: static;
-    margin-bottom: 10px;
+    position: static; /* quitar absolute para centrar */
+    margin: 0 auto;
   }
 
-  /* Ajuste de links */
+  /* Botones */
   #allPosts, #forTags, #createPost {
-    padding: 6px 10px;
-    font-size: 14px;
     width: 80%;
     max-width: 250px;
+    font-size: 14px;
+    padding: 8px;
+    text-align: center;
   }
 
-  /* Mapa mágico */
+  /* Post cards centradas */
+  .post_card {
+    max-width: 90%;
+    margin: 15px auto;
+    padding: 12px;
+    text-align: center;
+  }
+
+  /* Mapa mágico centrado y ajustado */
   #mapa_magico {
     max-width: 90%;
+    height: auto;
+    margin: 0 auto;
   }
 
-  /* Audio player */
+  /* Audio player centrado */
   .audio-player {
     flex-direction: column;
+    align-items: center;
     gap: 8px;
     padding: 8px;
   }
@@ -291,9 +306,9 @@ audio {
     font-size: 16px;
   }
 
-  /* Imágenes de esquinas */
+  /* Imágenes de esquinas más pequeñas */
   .esquina {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 }
