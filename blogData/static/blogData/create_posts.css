@@ -111,3 +111,10 @@ button {
       0 0 40px #ff6600;
   }
 }
+
+@media (max-width: 767px) {
+#menu_create_post{
+  flex-direction: column;
+  
+}
+}
